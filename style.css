@@ -1,0 +1,76 @@
+body {
+    background-color: #050505;
+    color: #00ff00;
+    font-family: 'Courier New', Courier, monospace;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden; /* Blokuje scrollowanie całej strony */
+}
+
+.terminal {
+    width: 90%;
+    max-width: 800px;
+    height: 80vh;
+    border: 1px solid #005500;
+    padding: 20px;
+    box-shadow: 0 0 15px #00ff00, inset 0 0 15px #002200;
+    display: flex;
+    flex-direction: column;
+    background-color: #000000;
+}
+
+#output {
+    flex-grow: 1;
+    overflow-y: auto;
+    margin-bottom: 10px;
+    text-shadow: 0 0 3px #00ff00;
+}
+
+#output p {
+    margin: 4px 0;
+    word-wrap: break-word;
+}
+
+.error {
+    color: #ff3333;
+    text-shadow: 0 0 5px #ff0000 !important;
+}
+
+.success {
+    color: #00ffff;
+    text-shadow: 0 0 5px #00ffff !important;
+}
+
+.input-line {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.prompt {
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+#command-input {
+    background: transparent;
+    border: none;
+    color: #00ff00;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 16px;
+    width: 100%;
+    outline: none;
+    text-shadow: 0 0 3px #00ff00;
+}
+
+/* Wygaszanie paska przewijania dla lepszego efektu */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-thumb {
+    background: #005500; 
+}
