@@ -3,21 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>W.T.T.G. - Terminal Głównego Węzła</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Portfolio - Moje Projekty</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #121212;
+            color: #e0e0e0;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            line-height: 1.6;
+        }
+        h1 {
+            color: #ffffff;
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+        }
+        .project-card {
+            background: #1e1e1e;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+        .project-card h2 {
+            margin-top: 0;
+            color: #bb86fc;
+        }
+    </style>
 </head>
 <body>
-    <div class="terminal">
-        <div id="output">
-            <p>> INICJALIZACJA SYSTEMU...</p>
-            <p>> NAWIĄZYWANIE BEZPIECZNEGO POŁĄCZENIA... OK.</p>
-            <p>> Wprowadź 8-znakowy klucz deszyfrujący, aby uzyskać dostęp do ukrytego ładunku.</p>
-        </div>
-        <div class="input-line">
-            <span class="prompt">></span>
-            <input type="text" id="command-input" autocomplete="off" spellcheck="false" autofocus>
-        </div>
+
+    <h1>Projekty i Prace</h1>
+    <p>Witaj w moim portfolio. Poniżej znajdziesz zestawienie moich aktualnych projektów.</p>
+
+    <div class="project-card">
+        <h2>Magiczne Mutacje</h2>
+        <p>Projekt zaliczeniowy z grafiki komputerowej. Zestaw 10-16 postaci w stylu anime z elementami zwierzęcych mutacji oraz unikalnymi przedmiotami magicznymi.</p>
     </div>
-    <script src="script.js"></script>
+
+    <div class="project-card">
+        <h2>Pixel Art i Koncepty</h2>
+        <p>Prace tworzone w Aseprite i Kricie. Eksploracja formy, palet kolorów i projektowania postaci do gier.</p>
+    </div>
+
+    <script>
+        // TUTAJ WPISZ DATĘ (np. 15 maja to "1505")
+        const secretCode = "1505"; 
+        
+        // Bufor przechowujący ostatnio wciśnięte klawisze
+        let keyBuffer = "";
+
+        window.addEventListener("keydown", (event) => {
+            // Ignorujemy klawisze systemowe typu Shift, Ctrl, Alt
+            if (event.key.length !== 1) return;
+
+            // Dodajemy wciśnięty znak do bufora
+            keyBuffer += event.key;
+
+            // Ucinamy bufor tak, by miał maksymalnie długość naszego hasła
+            // Dzięki temu pamiętamy tylko 4 ostatnie znaki
+            if (keyBuffer.length > secretCode.length) {
+                keyBuffer = keyBuffer.slice(-secretCode.length);
+            }
+
+            // Sprawdzamy, czy bufor zgadza się z hasłem
+            if (keyBuffer === secretCode) {
+                // Przekierowanie do prawdziwej gry
+                window.location.href = "terminal.html";
+            }
+        });
+    </script>
 </body>
 </html>
