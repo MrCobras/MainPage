@@ -1,0 +1,12 @@
+body{
+    background-color: #202124;
+}
+
+#NotFound{
+    display: block;
+    width: 721px;
+    height: 327px;
+    background-image: url("../images/NotFound.png");
+    background-repeat: no-repeat;
+    margin: 175px auto 0 auto;
+}

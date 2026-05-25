@@ -1,0 +1,78 @@
+body{
+    background-color: #202124;
+}
+
+#Logo{
+    display: block;
+    width: 179px;
+    height: 185px;
+    margin:  auto;
+    background-image: url("../images/ANNLarge.png");
+}
+
+#Header{
+    display: block;
+    margin: 40px auto 0 auto;
+}
+
+#Header h1{
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 21pt;
+    color: #FFF;
+    font-weight: normal;
+    text-align: center;
+    padding: 35px 0;
+}
+
+#Header u{
+    text-decoration: underline;
+}
+
+#Points{
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    font-family: 'Ubuntu Mono', monospace;
+    color: #FFFFFF;
+}
+
+#Points ol{
+
+}
+
+#Points ol li{
+    width: auto;
+    max-width: 650px;
+    height: auto;
+    min-height: 65px;
+    margin: 0 auto 40px auto;
+    padding: 2px 0 0 90px;
+    background-repeat: no-repeat;
+}
+
+#Points ol li h2{
+    font-size: 14pt;
+    font-weight: bold;
+    padding: 0 0 8px 0;
+}
+
+#Points ol li p{
+    font-size: 12pt;
+    font-weight: normal;
+}
+
+#anon{
+    background-image: url("../images/anon.png");
+    background-position: 8px 0;
+}
+
+#finger{
+    background-image: url("../images/finger.png");
+    background-position: 8px 0;
+}
+
+#ad{
+    background-image: url("../images/ad.png");
+}

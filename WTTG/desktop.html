@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width,initial-scale=1,maximum-scale=1.0,user-scalable=no" name="viewport">
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <link rel="stylesheet" type="text/css" href="desktop.css">
+</head>
+<body>
+    <div class="desktop">
+        <div class="icon mystery-man">
+            <img src="documents.png">
+            <div class="icon-name">Mystery Man</div>
+        </div>
+        <div class="icon my-network">
+            <img src="network.png">
+            <div class="icon-name">A.N.N. Browser</div>
+        </div>
+        <div class="icon my-computer">
+            <img src="computer.png">
+            <div class="icon-name">My Computer</div>
+        </div>
+        <div class="icon note-pad">
+            <img src="notepad.png">
+            <div class="icon-name">ReadME.txt</div>
+        </div>
+        <div class="icon recycle-bin">
+            <img src="recycle.png">
+            <div class="icon-name">Recycle Bin</div>
+        </div>
+    </div>
+
+    <div class="window notepad-window" style="display: none;">
+        <div class="title-bar">
+            <div><img src="notepad.png"> ReadME.txt</div>
+            <div class="controls">
+                <button class="cls"></button>
+                <button class="max"></button>
+                <button class="min"></button>
+            </div>
+        </div>
+        <div class="menu-bar">
+            <span>File</span>
+            <span>Edit</span>
+            <span>Format</span>
+            <span>View</span>
+            <span>Help</span>
+        </div>
+        <textarea></textarea>
+    </div>
+
+    <div class="window browser-window" style="display: none;">
+        <div class="title-bar browser-title">
+            <div><img src="computer.png"> A.N.N. - Anonymous Node Network</div>
+            <div class="controls">
+                <button class="cls browser-cls"></button>
+                <button class="max browser-max"></button>
+                <button class="min browser-min"></button>
+            </div>
+        </div>
+        <div class="address-bar-container">
+            <button class="nav-btn" id="browser-back">⇦</button>
+            <button class="nav-btn" id="browser-forward">⇨</button>
+        <input type="text" id="browser-url" value="http://ann.shadow/main_directory" autocomplete="off" spellcheck="false">        </div>
+        <iframe src="ann_hub.html" id="ann-iframe"></iframe>
+    </div>
+
+    <div class="taskbar">
+        <div class="start-button"><img src="logo.svg"> start</div>
+        <div class="opened-tabs">
+            <div class="open-tab" onclick="open()"><img src="documents.png"> Mystery Man</div>
+            <div class="open-tab" onclick="open()"><img src="computer.png"> A.N.N. Browser</div>
+            <div class="open-tab" onclick="open()"><img src="network.png"> My Network</div>
+            <div class="open-tab readme active"><img src="notepad.png"> ReadME.txt</div>
+        </div>
+        <div class="time">11:20 PM</div>
+    </div>
+
+    <script src="desktop.js"></script>
+</body>
+</html>

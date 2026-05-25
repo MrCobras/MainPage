@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <meta name="description" content="">
+    <title>Tango Down</title>
+    <link rel="stylesheet" href="../Global/reset.css" />
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <script type="text/javascript" src="../Global/Basic.js"></script>
+    <script src="main.js" defer></script>
+</head>
+<body id="page">
+    <div id="container">
+        <div id="nav">
+            <div id="logo">
+                <a class="CFTAG"><img src="images/logo.png" width="200"></a>
+            </div>
+            <ul id="menu">
+                <li>
+                    <a onClick="LinkClick('index.html')">Zlecenie</a>
+                </li>
+                <li>
+                    <a onClick="LinkClick('payment.html')">Płatność</a>
+                </li>
+                <li>
+                    <a onClick="LinkClick('results.html')">Rezultaty</a>
+                </li>
+                <li>
+                    <a onClick="LinkClick('hire.html')" class="bold">Zatrudnij nas</a>
+                </li>
+            </ul>
+        </div>
+        <div id="content">
+            <div id="column">
+                <h1 class="center">Zatrudnij nas</h1>
+            </div>
+            <div id="column" class="flexbox">
+                <div id="profile-image"><img src="images/hire.png" width="475"><a class="CPTAG INPROF"></a></div>
+                <div> <em class="PTAG"></em>
+                    <div id="box">
+                        <p>Dokonałeś właściwego wyboru, przychodząc tutaj, nie zawracaj sobie głowy innymi.
+                            Jesteśmy najlepsi. Czy jesteś gotowy, aby zająć się problemem? Podaj nam następujące
+                            dane celu:</p>
+                        <ul id="column-list" class="list-numbers">
+                            <li>Pełne imię i nazwisko</li>
+                            <li>Wiek</li> <em class="PTAG"></em>
+                            <li>Adres (Miasto/Stan/Kraj)</li>
+                            <li>Praca</li>
+                            <li>Hobby</li>
+                            <li>Małżonek/Małżonka</li>
+                            <li><a class = "CPTAG">Zdjęcie</a> celu</li>
+                            <li>Śmierć "wypadkowa" / "samobójcza"</li>
+                        </ul>
+
+                        <textarea name="target-info" id="target-info-textarea"
+                            placeholder="Wprowadź wszystkie szczegóły dotyczące osoby, którą chcesz zabić, w przeciwnym razie zatrzymamy Twoje pieniądze i usuniemy zlecenie."></textarea>
+
+                        <button id="deposit-btn" onClick="validateDeposit()">Wpłać depozyt 2000 USD</button>
+                        <em id="error-msg">Brak połączonego portfela</em>
+                        <br>
+                        <p class="center">Po złożeniu zamówienia nie ma odwrotu, cel jest uważany za martwego.</p>
+                        <p class="center">Wszystkie transakcje są <b>OSTATECZNE</b>. <b>NIE MOŻNA</b> cofnąć zlecenia.</p>
+                        <em class="PTAG"></em>
+                        <br><br>
+                        <p class="center">
+                            Skontaktujemy się z Tobą w sprawie kolejnych kroków. Jeśli nie otrzymasz od nas wiadomości w ciągu tygodnia, wyślij wiadomość na
+                            poniższy adres e-mail <a class = "CFTAG">poniżej</a>, podając numer zamówienia w temacie.
+                        </p>
+                        <p class="center"><b>CZESC KODU UKRYTA</b></p>
+                    </div>
+                </div> <em class="PTAG"></em>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

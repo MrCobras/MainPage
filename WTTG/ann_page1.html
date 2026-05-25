@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>The Loogaroo</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: 'Georgia', serif;
+            text-align: center;
+            padding: 40px 20px;
+            margin: 0;
+        }
+        .logo {
+            color: #ff0000;
+            font-size: 32px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+        .quote {
+            font-style: italic;
+            color: #888;
+            max-width: 600px;
+            margin: 30px auto;
+            line-height: 1.6;
+        }
+        .hint {
+            margin-top: 50px;
+            color: #111; /* Bardzo ciemny szary - prawie niewidoczny na czarnym tle! */
+            font-family: monospace;
+            font-size: 14px;
+            transition: color 0.5s;
+        }
+        /* Jeśli zaznaczy tekst myszką, kod stanie się jasny */
+        .hint::selection {
+            background: #ff0000;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="logo">THE LOOGAROO</div>
+    
+    <p class="quote">
+        "Jesteśmy synami i córkami The Loogaroo, naszej ukochanej matki. 
+        Dawno temu nasza matka zawarła pakt... Istniejemy w cieniu okrutnej ludzkości."
+    </p>
+
+    <p style="color: #666; font-size: 14px; margin-top: 40px;">
+        Aby przejść do kolejnego węzła sieci, wpisz jego adres w pasek URL przeglądarki.
+    </p>
+
+    <div class="hint">
+        [FRAGMENT KODU 1/3: "pro"] <br>
+        UKRYTY ADRES DO WĘZŁA 2: http://ann.shadow/magiczne_mutacje
+    </div>
+<script>window.parent.postMessage("url_page1", "*");</script>
+</body>
+</html>
