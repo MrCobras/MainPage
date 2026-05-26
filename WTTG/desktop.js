@@ -43,6 +43,8 @@ TWOJE ZADANIE:
 2. Eksploruj węzły. Wskazówki mogą być wszędzie: w dziwnych tekstach, ukryte w samych pikselach obrazów, a czasem głęboko pod maską systemu w kodzie źródłowym stron.
 3. Kompletuj fragmenty. Wykorzystaj ten Notatnik, aby łączyć znalezione części w ostateczny ciąg znaków.
 
+Pierwsza podpowiedź: kliknij w logo pana z kapeluszem ;)
+
 Uważaj na to, gdzie klikasz i co pobierasz. Pamiętaj, że w tej sieci nigdy nie jesteś sama.
 
 Gra się rozpoczęła.`;
@@ -63,6 +65,7 @@ const urlInput = document.getElementById("browser-url");
 const iframe = document.getElementById("ann-iframe");
 const btnBack = document.getElementById("browser-back");
 const btnForward = document.getElementById("browser-forward");
+const browserTitleText = document.getElementById("browser-title-text");
 
 // 1. Obsługa przycisków Wstecz i Naprzód
 btnBack.addEventListener("click", () => {
@@ -91,126 +94,60 @@ if (btnForward) {
     });
 }
 
-// 2. Obsługa ręcznego wpisywania adresów i zatwierdzania Enterem
+// 2. Obsługa ręcznego wpisywania adresów URL (Naprawione ścieżki bez spacji!)
 if (urlInput) {
     urlInput.addEventListener("keydown", function(event) {
         if (event.key === "Enter") {
             const currentUrl = urlInput.value.trim().toLowerCase();
             
-            if (currentUrl.includes("magiczne_mutacje")) {
-                iframe.src = "ann_page2.html";
-            } 
-            else if (currentUrl.includes("loogaroo")) {
-                iframe.src = "ann_page1.html";
-            } 
-            else if (currentUrl.includes("main_directory") || currentUrl.includes("hub")) {
-                iframe.src = "ann_hub.html";
-            }
-            else if (currentUrl.includes("youthere")) {
-                iframe.src = "youthere/index.html";
-            }
-            else if (currentUrl.includes("korytarz")) {
-                iframe.src = "thehall/index.html";
-            }
-            else if (currentUrl.includes("doll_maker")) {
-                iframe.src = "The Dollmaker/index.html";
-            }
-            else if (currentUrl.includes("cel_zlikwidowany")) {
-                iframe.src = "tangodown/index.html";
-            }
-            else if (currentUrl.includes("witryna_zablokowana")) {
-                iframe.src = "seized/index.html";
-            }
-            else if (currentUrl.includes("czerwony_trojkat")) {
-                iframe.src = "redtriangle/index.html";
-            }
-            else if (currentUrl.includes("nie_znaleziono")) {
-                iframe.src = "NotFound/index.html";
-            }
-            else if (currentUrl.includes("brak_internetu")) {
-                iframe.src = "NoInet/index.html";
-            }
-            else if (currentUrl.includes("mutacja")) {
-                iframe.src = "Mutilation/index.html";
-            }
-            else if (currentUrl.includes("zaginione_nagrania")) {
-                iframe.src = "losttapes/index.html";
-            }
-            else if (currentUrl.includes("home")) {
-                iframe.src = "Home/index.html";
-            }
-            else if (currentUrl.includes("nie_zmarnuj_tego")) {
-                iframe.src = "dontwasteit/index.html";
-            }
-            else if (currentUrl.includes("gleboki_dziennik")) {
-                iframe.src = "Deep Journal/Deep journal 1/245.html";
-            }
-            else if (currentUrl.includes("kodeks_ciszy")) {
-                iframe.src = "codexofsilence/index.html";
-            }
-            else if (currentUrl.includes("posty_czarnej_czapki")) {
-                iframe.src = "blackhatpost/index.html";
-            }
-            else {
-                iframe.src = "ann_404.html";
-            }
+            if (currentUrl.includes("magiczne_mutacje")) iframe.src = "ann_page2.html";
+            else if (currentUrl.includes("loogaroo")) iframe.src = "ann_page1.html";
+            else if (currentUrl.includes("main_directory") || currentUrl.includes("hub")) iframe.src = "ann_hub.html";
+            else if (currentUrl.includes("youthere")) iframe.src = "youthere/index.html";
+            else if (currentUrl.includes("korytarz")) iframe.src = "thehall/index.html";
+            else if (currentUrl.includes("doll_maker")) iframe.src = "dollmaker/index.html";
+            else if (currentUrl.includes("cel_zlikwidowany")) iframe.src = "tangodown/index.html";
+            else if (currentUrl.includes("witryna_zablokowana")) iframe.src = "seized/index.html";
+            else if (currentUrl.includes("czerwony_trojkat")) iframe.src = "redtriangle/index.html";
+            else if (currentUrl.includes("nie_znaleziono")) iframe.src = "NotFound/index.html";
+            else if (currentUrl.includes("brak_internetu")) iframe.src = "NoInet/index.html";
+            else if (currentUrl.includes("okaleczanie")) iframe.src = "Mutilation/176.html";
+            else if (currentUrl.includes("zaginione_nagrania")) iframe.src = "losttapes/index.html";
+            else if (currentUrl.includes("nie_zmarnuj_tego")) iframe.src = "dontwasteit/index.html";
+            else if (currentUrl.includes("gleboki_dziennik")) iframe.src = "Deep Journal/deep_journal/245.html";
+            else if (currentUrl.includes("kodeks_ciszy")) iframe.src = "codexofsilence/index.html";
+            else if (currentUrl.includes("posty_czarnej_czapki")) iframe.src = "blackhatpost/index.html";
+            else if (currentUrl.includes("home")) iframe.src = "Home/index.html";
+            else iframe.src = "ann_404.html";
         }
     });
 }
 
-// 3. AUTOMATYCZNA SYNCHRONIZACJA PASKA ADRESU
-// Ten kod uruchamia się za każdym razem, gdy iframe załaduje nową stronę 
-// (niezależnie, czy przez kliknięcie linku, wpisanie z palca, czy przycisk Wstecz!)
-if (iframe) {
-    iframe.addEventListener("load", function() {
-        try {
-            const path = iframe.contentWindow.location.pathname;
-            const page = path.split("/").pop();           
-            if (page === "ann_hub.html" || page === "") {
-                urlInput.value = "http://ann.shadow/main_directory";
-            } else if (page === "ann_page1.html") {
-                urlInput.value = "http://ann.shadow/loogaroo_v1";
-            } else if (page === "ann_page2.html") {
-                urlInput.value = "http://ann.shadow/magiczne_mutacje";
-            } else if (page === "youthere/index.html") {
-                urlInput.value = "http://ann.shadow/ty_tam";
-            }else if (page === "thehall/index.html") {
-                urlInput.value = "http://ann.shadow/korytarz";
-            }else if (page === "The Dollmaker/index.html") {
-                urlInput.value = "http://ann.shadow/doll_maker";
-            }else if (page === "tangodown/index.html") {
-                urlInput.value = "http://ann.shadow/cel_zlikwidowany";
-            }else if (page === "seized/index.html") {
-                urlInput.value = "http://ann.shadow/witryna_zablokowana";
-            }else if (page === "redtriangle/index.html") {
-                urlInput.value = "http://ann.shadow/czerwony_trojkat";
-            }else if (page === "NotFound/index.html") {
-                urlInput.value = "http://ann.shadow/nie_znaleziono";
-            }else if (page === "NoInet/index.html") {
-                urlInput.value = "http://ann.shadow/brak_internetu";
-            }else if (page === "Mutilation/index.html") {
-                urlInput.value = "http://ann.shadow/mutacja";
-            }else if (page === "losttapes/index.html") {
-                urlInput.value = "http://ann.shadow/zaginione_nagrania";
-            }else if (page === "Home/index.html") {
-                urlInput.value = "http://ann.shadow/home";
-            }else if (page === "dontwasteit/index.html") {
-                urlInput.value = "http://ann.shadow/nie_zmarnuj_tego";
-            }else if (page === "Deep Journal/index.html") {
-                urlInput.value = "http://ann.shadow/gleboki_dziennik";
-            }else if (page === "codexofsilence/index.html") {
-                urlInput.value = "http://ann.shadow/kodeks_ciszy";
-            }else if (page === "blackhatpost/index.html") {
-                urlInput.value = "http://ann.shadow/posty_czarnej_czapki";
-            }else if (page === "ann_404.html") {
-                urlInput.value = "http://ann.shadow/error_node_not_found";
-            }
-        } catch (e) {
-            console.log("Działasz na pliku lokalnym. Wrzuć kod na GitHuba, żeby pasek się aktualizował.");
-        }
-    });
-}
+// 3. SYSTEM KOMUNIKACJI Z RAMKĄ (Odbieranie wiadomości z poszczególnych stron)
+window.addEventListener("message", function(event) {
+    if (!urlInput) return;
+    const msg = event.data;
 
+    if (msg === "url_hub") urlInput.value = "http://ann.shadow/main_directory";
+    else if (msg === "url_page1") urlInput.value = "http://ann.shadow/loogaroo_v1";
+    else if (msg === "url_page2") urlInput.value = "http://ann.shadow/magiczne_mutacje";
+    else if (msg === "url_youthere") urlInput.value = "http://ann.shadow/youthere";
+    else if (msg === "url_korytarz") urlInput.value = "http://ann.shadow/korytarz";
+    else if (msg === "url_doll_maker") urlInput.value = "http://ann.shadow/doll_maker";
+    else if (msg === "url_cel_zlikwidowany") urlInput.value = "http://ann.shadow/cel_zlikwidowany";
+    else if (msg === "url_witryna_zablokowana") urlInput.value = "http://ann.shadow/witryna_zablokowana";
+    else if (msg === "url_czerwony_trojkat") urlInput.value = "http://ann.shadow/czerwony_trojkat";
+    else if (msg === "url_nie_znaleziono") urlInput.value = "http://ann.shadow/nie_znaleziono";
+    else if (msg === "url_brak_internetu") urlInput.value = "http://ann.shadow/brak_internetu";
+    else if (msg === "url_okaleczanie") urlInput.value = "http://ann.shadow/okaleczanie";
+    else if (msg === "url_zaginione_nagrania") urlInput.value = "http://ann.shadow/zaginione_nagrania";
+    else if (msg === "url_nie_zmarnuj_tego") urlInput.value = "http://ann.shadow/nie_zmarnuj_tego";
+    else if (msg === "url_gleboki_dziennik") urlInput.value = "http://ann.shadow/gleboki_dziennik";
+    else if (msg === "url_kodeks_ciszy") urlInput.value = "http://ann.shadow/kodeks_ciszy";
+    else if (msg === "url_posty_czarnej_czapki") urlInput.value = "http://ann.shadow/posty_czarnej_czapki";
+    else if (msg === "url_home") urlInput.value = "http://ann.shadow/home";
+    else if (msg === "url_404") urlInput.value = "http://ann.shadow/error_node_not_found";
+});
 
 // === ULEPSZONE PRZECIĄGANIE OKIEN Z REGULACJĄ CZUŁOŚCI (DPI) ===
 let highestZIndex = 10; 

@@ -325,11 +325,15 @@ textarea {
 }
 /* Style okna przeglądarki */
 .browser-window {
-    max-width: 850px;
-    max-height: 550px;
-    width: calc(100% - 40px);
-    height: calc(100% - 80px);
+    max-width: 1400px; /* Znacznie powiększony limit (wcześniej 850px) */
+    max-height: 900px; /* Powiększony limit wysokości (wcześniej 550px) */
+    width: 85vw;       /* Zajmuje 85% szerokości ekranu (viewport width) */
+    height: 85vh;      /* Zajmuje 85% wysokości ekranu (viewport height) */
     background: #111111;
+    
+    /* Dodajemy opcję ręcznego rozciągania okna myszką za prawy dolny róg! */
+    resize: both;
+    overflow: hidden;
 }
 
 .address-bar-container {

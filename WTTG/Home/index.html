@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>A.N.N Home</title>
+    <title>A.N.N Strona Główna</title>
     <link rel="stylesheet" type="text/css" href="../Global/reset.css"/>
     <link rel="stylesheet" type="text/css" href="css/style.css"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,7 +12,7 @@
 
     <script>
         function FooBarTest(){
-            alert("Test");
+            alert("wpisz w pasek wyszukiwania: centralne miejsce/ośrodek albo miejsce w grze przed rozpoczęciem meczu");
             window.ue.webbrowser.foo_bar_test();
         }
     </script>
@@ -21,25 +21,25 @@
 <body>
     <header id = "Header">
         <div id="Logo" onclick="FooBarTest()"></div>
-        <h1>Welcome to the <u>A</u>nonymous <u>N</u>ode <u>N</u>etwork browser!</h1>
+        <h1>Witaj w przeglądarce <u>A</u>nonymous <u>N</u>ode <u>N</u>etwork!</h1>
     </header>
 
     <div id = "Points">
         <ol>
             <li id = "anon">
-                <h2>A.N.N: Your Gateway to Anonymous Browsing!</h2>
-                <p>A.N.N's advanced encryption protocols secure your data, preventing unauthorized access and safeguarding your sensitive information.</p>
+                <h2>A.N.N: Twoja Brama do Anonimowego Przeglądania!</h2>
+                <p>Zaawansowane protokoły szyfrowania A.N.N zabezpieczają Twoje dane, zapobiegając nieautoryzowanemu dostępowi i chroniąc Twoje wrażliwe informacje.</p>
             </li>
             <li id = "finger">
-                <h2>Smooth Gloves!</h2>
-                <p>With A.N.N feel confident with our advanced technologies to keep you secure. A.N.N makes it difficult for you to be fingerprinted by malicious sites with cloaking your device information.</p>
+                <h2>Bez śladów!</h2>
+                <p>Dzięki A.N.N możesz czuć się pewnie, korzystając z naszych zaawansowanych technologii, które zapewniają Ci bezpieczeństwo. A.N.N utrudnia Twoje śledzenie (fingerprinting) przez złośliwe strony, maskując informacje o Twoim urządzeniu.</p>
             </li>
             <li id = "ad">
-                <h2>Ad Free Experience!</h2>
-                <p>A.N.N. is a community funded project that provides you a clean browsing experience. Want to help? Contribute to the project at our web page.</p>
+                <h2>Przeglądanie bez reklam!</h2>
+                <p>A.N.N. to projekt finansowany przez społeczność, który zapewnia Ci czyste przeglądanie. Chcesz pomóc? Wesprzyj projekt na naszej stronie internetowej.</p>
             </li>
         </ol>
     </div>
-
+<script>window.parent.postMessage("url_home", "*");</script>
 </body>
 </html>

@@ -4,258 +4,299 @@
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
 	<meta name="description" content="">
-	<title>-JOURNAL OPENED-</title>
+	<title>-DZIENNIK OTWARTY-</title>
 	<link rel="stylesheet" href="./style-245.css" type="text/css">
 	<link rel="stylesheet" href="./style-clickpoints.css" type="text/css">
-	
+	<style>
+		.tooltip-wrapper {
+			position: absolute;
+			bottom: 0;
+			right: 0;
+			display: inline-block;
+		}
+		.tooltip-wrapper .tooltip-button {
+			background: none;
+			border: none;
+			padding: 0;
+			cursor: pointer;
+		}
+		.tooltip-wrapper .tooltip-bubble {
+			visibility: hidden;
+			width: 120px;
+			background-color: black;
+			color: #fff;
+			text-align: center;
+			border-radius: 6px;
+			padding: 8px 0;
+			position: absolute;
+			z-index: 1;
+			top: 110%;
+			left: 50%;
+			margin-left: -60px;
+			opacity: 0;
+			transition: opacity 0.3s;
+			font-size: 16px;
+			font-weight: normal;
+		}
+		.tooltip-wrapper .tooltip-bubble::after {
+			content: "";
+			position: absolute;
+			bottom: 100%;
+			left: 50%;
+			margin-left: -5px;
+			border-width: 5px;
+			border-style: solid;
+			border-color: transparent transparent black transparent;
+		}
+		.tooltip-wrapper .tooltip-bubble.show {
+			visibility: visible;
+			opacity: 1;
+		}
+	</style>
 </head>
 <body id="page">
-	<div id="header" class="text-center">
-		<h1>Deep Journal</h1>
+	<div id="header" class="text-center" style="position: relative;">
+		<h1>Głęboki Dziennik
+			<span class="tooltip-wrapper">
+				<button class="tooltip-button" onclick="toggleTooltip()">
+					<img src="node2.png" alt="node2" style="width: 20px; height: 20px;">
+				</button>
+				<span class="tooltip-bubble" id="myTooltip">2137</span>
+			</span>
+		</h1>
 	</div>
-	<p class="text-grey">Opened 08/04/2010</p>
+	<p class="text-grey">Otwarto 04.08.2010</p>
 	<hr>
 	<div class="message-container">
 		<div class="message author">
-			<span class="date">12:02am 08/23/2010</span>
+			<span class="date">00:02 23.08.2010</span>
 			<br>
-			<span class="username text-green">Anonymous</span>
+			<span class="username text-green">Anonim</span>
 			<br>
-			<p class="content"> She still wont talk to me. In fact, I think she's starting to be outwardly angry with me. I can't believe she'd fucking
-				do this. I want a part of her <em class="PTAG"></em> but she's never around! Her shoes were outside so I snagged one without her seeing. I just
-				need her!
+			<p class="content"> Ona wciąż nie chce ze mną rozmawiać. Właściwie, myślę, że zaczyna być na mnie otwarcie zła. Nie mogę uwierzyć, że mogłaby to kurwa zrobić. Chcę jej cząstkę, <em class="PTAG"></em> ale nigdy jej nie ma w pobliżu! Jej buty były na zewnątrz, więc zwędziłem jednego, gdy nie patrzyła. Po prostu jej potrzebuję!
 				<br>
-				<br> shoe in box... </p>
+				<br> but w pudełku... </p>
 			<img src="./shoe.jpg" width="300" height="400"> </div>
 	</div>
 	<div class="message-container">
 		<div class="message">
-			<span class="date">2:42am 08/23/2010</span>
+			<span class="date">02:42 23.08.2010</span>
 			<br>
-			<span class="username text-pink">Anonymous</span>
+			<span class="username text-pink">Anonim</span>
 			<br>
-			<p class="content"> What size? </p>
+			<p class="content"> Jaki rozmiar? </p>
 		</div>
 	</div>
 	<div class="message-container">
 		<div class="message">
-			<span class="date">2:45am 08/23/2010</span>
+			<span class="date">02:45 23.08.2010</span>
 			<br>
-			<span class="username text-cyan">Anonymous</span>
+			<span class="username text-cyan">Anonim</span>
 			<br>
-			<p class="content"> Looks like a seven. </p>
+			<p class="content"> Wygląda na siódemkę. </p>
 		</div>
 	</div>
 	<div class="message-container">
 		<div class="message author">
-			<span class="date"><a class="CPTAG">2:45am 08/23/2010</a></span>
+			<span class="date"><a class="CPTAG">02:45 23.08.2010</a></span>
 			<br>
-			<span class="username text-green">Anonymous</span>
+			<span class="username text-green">Anonim</span>
 			<br>
-			<p class="content"> It's a 7 </p>
+			<p class="content"> To 7 </p>
 		</div>
 	</div>
 	<div class="message-container">
 		<div class="message author">
-			<span class="date">1:13am 08/24/2010</span>
+			<span class="date">01:13 24.08.2010</span>
 			<br>
-			<span class="username text-green">Anonymous</span>
+			<span class="username text-green">Anonim</span>
 			<br>
-			<p class="content"> My mind is racing! fuck. She stepped out of her house for a moment and didn't lock her door. Something just came over
-				me and I ran in. God it all smelled so good. I panicked and took the first thing I could see and I am SO FUCKING <a class="CFTAG">HAPPY</a>
-				I DID. </p>
+			<p class="content"> Mój umysł pędzi! kurwa. Wyszła na chwilę z domu i nie zamknęła drzwi. Coś mnie po prostu naszło i wbiegłem do środka. Boże, wszystko tak dobrze pachniało. Spanikowałem i wziąłem pierwszą rzecz, jaką zobaczyłem i JESTEM TAK CHOLERNIE <a class="CFTAG">SZCZĘŚLIWY</a>, ŻE TO ZROBIŁEM. </p>
 			<img src="./underwear.jpg" width="300" height="400"> </div>
 	</div>
 	<div class="message-container">
 		<div class="message">
-			<span class="date">1:31am 08/24/2010</span>
+			<span class="date">01:31 24.08.2010</span>
 			<br>
-			<span class="username text-yellow">Anonymous</span>
+			<span class="username text-yellow">Anonim</span>
 			<br>
 			<p class="content"> <em class="PTAG"></em> (:-O </p>
 		</div>
 	</div>
 	<div class="message-container">
 		<div class="message">
-			<span class="date">1:40am 08/24/2010</span>
+			<span class="date">01:40 24.08.2010</span>
 			<br>
-			<span class="username text-brown">Anonymous</span>
+			<span class="username text-brown">Anonim</span>
 			<br>
-			<p class="content"> Wow nice! Are they dirty? Seriously, fuck that crazy bitch. </p>
+			<p class="content"> Wow, nieźle! Są brudne? Poważnie, pierdolić tę szaloną sukę. </p>
 		</div>
 	</div>
 	<div class="message-container">
 		<div class="message author">
-			<span class="date">4:55pm 08/27/2010</span>
+			<span class="date">16:55 27.08.2010</span>
 			<br>
-			<span class="username text-green">Anonymous</span>
+			<span class="username text-green">Anonim</span>
 			<br>
-			<p class="content"> Yeah, she has gone off the deep end. I looked at her out my window as she was leaving (like always) and she looks right
-				at me and tells me to stop staring at her! It hurt so much. We have a connection I don't think she sees yet. </p>
+			<p class="content"> Tak, kompletnie jej odbiło. Patrzyłem na nią przez okno, kiedy wychodziła (jak zawsze), a ona spojrzała prosto na mnie i powiedziała, żebym przestał się na nią gapić! To tak bardzo bolało. Mamy więź, której, jak sądzę, ona jeszcze nie widzi. </p>
 		</div>
 	</div>
 	<div class="message-container">
 		<div class="message">
-			<span class="date">6:51pm 08/27/2010</span>
+			<span class="date">18:51 27.08.2010</span>
 			<br>
-			<span class="username text-yellow">Anonymous</span>
+			<span class="username text-yellow">Anonim</span>
 			<br>
-			<p class="content"> <a class="CPTAG">Seriously</a>. It's messed up but you can do better. I'm sorry you put so much of yourself into it. </p>
+			<p class="content"> <a class="CPTAG">Poważnie</a>. To jest popieprzone, ale stać cię na więcej. Przykro mi, że tak bardzo się w to zaangażowałeś. </p>
 		</div>
 	</div>
 	<div class="message-container">
 		<div class="message author">
-			<span class="date">3:42am 08/28/2010</span>
+			<span class="date">03:42 28.08.2010</span>
 			<br>
-			<span class="username text-green">Anonymous</span>
+			<span class="username text-green">Anonim</span>
 			<br>
-			<p class="content"> I can't stand it anymore. I've been trying to talk to her. I've been trying to show her how much I love her and she's
-				acting like I'm going to kill her! I love her so much and it's killing me. :( </p>
+			<p class="content"> Nie mogę już tego znieść. Próbowałem z nią rozmawiać. Próbowałem pokazać jej, jak bardzo ją kocham, a ona zachowuje się, jakbym miał ją zabić! Tak bardzo ją kocham i to mnie zabija. :( </p>
 		</div>
 	</div>
 	<div class="message-container">
 		<div class="message author">
-			<span class="date">7:33am 08/29/2010</span>
+			<span class="date">07:33 29.08.2010</span>
 			<br>
-			<span class="username text-green">Anonymous</span>
+			<span class="username text-green">Anonim</span>
 			<br>
-			<p class="content"> I emptied the cup in with everything else. It's the only thing that made sense. I'm just using the box now for all of
-				it. I guess I have this dream of her finding it and seeing how much she means to me. I should just throw it in her fucking
-				face for how she's treating me but that will end all chances with her. I hope she'll come around. </p>
+			<p class="content"> Opróżniłem kubek razem z całą resztą. To jedyne, co miało sens. Teraz używam pudełka na to wszystko. Chyba mam takie marzenie, że ona to znajdzie i zobaczy, jak wiele dla mnie znaczy. Powinienem po prostu rzucić jej to w jej pieprzoną twarz za to, jak mnie traktuje, ale to zakończy wszystkie szanse z nią. Mam nadzieję, że się opamięta. </p>
 			<a class="CFTAG"><img src="./boxend.jpg" width="500" height="375"></a>
 		</div>
 	</div>
 	<div class="message-container">
 		<div class="message">
-			<span class="date">8:10am 08/29/2010</span>
+			<span class="date">08:10 29.08.2010</span>
 			<br>
-			<span class="username text-yellow">Anonymous</span>
+			<span class="username text-yellow">Anonim</span>
 			<br>
-			<p class="content"> Oh my god. That's so fucking hot. I wish I was in there. She doesn't deserve it. WASTED. </p>
+			<p class="content"> O mój boże. To jest takie cholernie gorące. Chciałbym tam być. Ona na to nie zasługuje. ZMARNOWANE. </p>
 		</div>
 	</div>
 	<div class="message-container">
 		<div class="message">
-			<span class="date">9:09am 08/29/2010</span>
+			<span class="date">09:09 29.08.2010</span>
 			<br>
-			<span class="username text-brown">Anonymous</span>
+			<span class="username text-brown">Anonim</span>
 			<br>
-			<p class="content"> Fuck. </p>
+			<p class="content"> Kurwa. </p>
 		</div>
 	</div>
 	<div class="message-container">
 		<div class="message author">
-			<span class="date">8:44pm 09/02/2010</span>
+			<span class="date">20:44 02.09.2010</span>
 			<br>
-			<span class="username text-green">Anonymous</span>
+			<span class="username text-green">Anonim</span>
 			<br>
-			<p class="content"> I've been fucking fuming. I haven't left my apartment at all. I can see she's getting ready to go out tonight. I want
-				to follower her to see where she's going. I want to wait in her apartment and fucking strangle her. I don't know what
-				to do with her. </p>
+			<p class="content"> Jestem kurwa wściekły. W ogóle nie wychodziłem z mieszkania. Widzę, że szykuje się dziś wieczorem do wyjścia. Chcę ją śledzić, żeby zobaczyć, dokąd idzie. Chcę czekać w jej mieszkaniu i ją kurwa udusić. Nie wiem, co z nią zrobić. </p>
 		</div>
 	</div>
 	<div class="message-container">
 		<div class="message">
-			<span class="date">9:00pm 09/02/2010</span>
+			<span class="date">21:00 02.09.2010</span>
 			<br>
-			<span class="username text-yellow">Anonymous</span>
+			<span class="username text-yellow">Anonim</span>
 			<br>
-			<p class="content"> I can tell you where to put this bitch.
-				<br> Then you could do whatever you want. </p>
+			<p class="content"> Mogę ci powiedzieć, gdzie umieścić tę sukę.
+				<br> Wtedy mógłbyś robić, co tylko chcesz. </p>
 		</div>
 	</div>
 	<div class="message-container">
 		<div class="message">
-			<span class="date">9:26pm 09/02/2010</span>
+			<span class="date">21:26 02.09.2010</span>
 			<br>
-			<span class="username text-pink">Anonymous</span>
+			<span class="username text-pink">Anonim</span>
 			<br>
-			<p class="content"> Wish I could give you a hug :( </p>
+			<p class="content"> Chciałabym cię przytulić :( </p>
 		</div>
 	</div>
 	<div class="message-container">
 		<div class="message author">
-			<span class="date">9:30pm 09/02/2010</span>
+			<span class="date">21:30 02.09.2010</span>
 			<br>
-			<span class="username text-green">Anonymous</span>
+			<span class="username text-green">Anonim</span>
 			<br>
-			<p class="content"> I'm not going to let her go. I have to see where she's going. I'm going after her. </p>
+			<p class="content"> Nie pozwolę jej odejść. Muszę zobaczyć, dokąd idzie. Idę za nią. </p>
 		</div>
 	</div>
 	<div class="message-container">
 		<div class="message">
-			<span class="date">9:33pm 09/02/2010</span>
+			<span class="date">21:33 02.09.2010</span>
 			<br>
-			<span class="username text-yellow">Anonymous</span>
+			<span class="username text-yellow">Anonim</span>
 			<br>
-			<p class="content"> Good luck! </p>
+			<p class="content"> Powodzenia! </p>
 		</div>
 	</div>
 	<div class="message-container">
 		<div class="message author">
-			<span class="date">4:57am 09/05/2010</span>
+			<span class="date">04:57 05.09.2010</span>
 			<br>
-			<span class="username text-green">Anonymous</span>
+			<span class="username text-green">Anonim</span>
 			<br>
-			<p class="content"> Not going to be posting as much for a bit. I have a lot I need to figure out. But I can stop worrying so much finally.
+			<p class="content"> Przez jakiś czas nie będę tyle pisał. Mam wiele do przemyślenia. Ale w końcu mogę przestać się tak bardzo martwić.
 				</p>
 		</div>
 	</div>
 	<div class="message-container">
 		<div class="message">
-			<span class="date">6:10am 09/05/2010</span>
+			<span class="date">06:10 05.09.2010</span>
 			<br>
-			<span class="username text-pink">Anonymous</span>
+			<span class="username text-pink">Anonim</span>
 			<br>
-			<p class="content"> You finally get to talk to her? </p>
+			<p class="content"> W końcu udało ci się z nią porozmawiać? </p>
 		</div>
 	</div>
 	<div class="message-container">
 		<div class="message author">
-			<span class="date">6:36pm 09/05/2010</span>
+			<span class="date">18:36 05.09.2010</span>
 			<br>
-			<span class="username text-green">Anonymous</span>
+			<span class="username text-green">Anonim</span>
 			<br>
-			<p class="content"> Yes! She's starting to see things my way I think :-D </p>
+			<p class="content"> Tak! Zaczyna patrzeć na sprawy po mojemu, tak myślę :-D </p>
 		</div>
 	</div>
 	<div class="message-container">
 		<div class="message author">
-			<span class="date">8:22am 09/07/2010</span>
+			<span class="date">08:22 07.09.2010</span>
 			<br>
-			<span class="username text-green">Anonymous</span>
+			<span class="username text-green">Anonim</span>
 			<br>
-			<p class="content"> She's going to move in with me! I'm so excited! I can't believe it. </p>
+			<p class="content"> Ona się do mnie wprowadzi! Jestem taki podekscytowany! Nie mogę w to uwierzyć. </p>
 		</div>
 	</div>
 	<div class="message-container">
 		<div class="message">
-			<span class="date">9:12am 09/07/2010</span>
+			<span class="date">09:12 07.09.2010</span>
 			<br>
-			<span class="username text-brown">Anonymous</span>
+			<span class="username text-brown">Anonim</span>
 			<br>
-			<p class="content"> Wow neither can I, that was so fast! Congrats! </p>
+			<p class="content"> Wow, ja też nie mogę, to było takie szybkie! Gratulacje! </p>
 		</div>
 	</div>
 	<div class="message-container">
 		<div class="message author">
-			<span class="date">6:43am 09/09/2010</span>
+			<span class="date">06:43 09.09.2010</span>
 			<br>
-			<span class="username text-green">Anonymous</span>
+			<span class="username text-green">Anonim</span>
 			<br>
-			<p class="content"> I almost have a place setup for her in the apartment. Here she is looking fucking gorgeous! </p>
+			<p class="content"> Prawie przygotowałem dla niej miejsce w mieszkaniu. Oto ona, wygląda kurwa wspaniale! </p>
 			<a class="CPTAG"><img src="./onbed.jpg" width="300" height="242"></a>
 		</div>
 	</div>
-	<p class="text-green">&lt;Comments on this journal have been LOCKED&gt;</p>
+	<p class="text-green">&lt;Komentarze w tym dzienniku zostały ZABLOKOWANE&gt;</p>
 	<div class="message-container">
 		<div class="message author">
-			<span class="date">10:42pm 09/18/2010</span>
+			<span class="date">22:42 18.09.2010</span>
 			<br>
-			<span class="username text-green">Anonymous</span>
+			<span class="username text-green">Anonim</span>
 			<br>
-			<p class="content"> Last update I think. I love living with her. She's so sexy and we fuck ALL the time. I have an album I've started I wont
-				share here ;-) but here's one more of her. </p>
+			<p class="content"> Myślę, że to ostatnia aktualizacja. Uwielbiam z nią mieszkać. Jest taka seksowna i pieprzymy się CAŁY czas. Zacząłem album, którego tu nie udostępnię ;-), ale oto jeszcze jedno jej zdjęcie. </p>
 			<a class="CFTAG"><img class="nudity" src="./dead.jpg" width="242" height="391"></a>
 		</div>
 	</div>
@@ -264,11 +305,29 @@
 	<div id="nav">
 		<ul>
 			<li>
-				<a id="Link-out" href="../Deep journal 1/245.html">Page 1</a>
-				<a id="Link-out" href="../Deep journal 2/246.html">Page 2</a>
-				<a id="Link-out" href="247.html">Page 3</a>
+				<a id="Link-out" href="../Deep journal 1/245.html">Strona 1</a>
+				<a id="Link-out" href="../Deep journal 2/246.html">Strona 2</a>
+				<a id="Link-out" href="247.html">Strona 3</a>
 			</li>
 		</ul>
 	</div>
 
+	<script>
+		function toggleTooltip() {
+			document.getElementById("myTooltip").classList.toggle("show");
+		}
+
+		// Close the tooltip if the user clicks outside of it
+		window.onclick = function(event) {
+			if (!event.target.closest('.tooltip-wrapper')) {
+				var tooltips = document.getElementsByClassName("tooltip-bubble");
+				for (var i = 0; i < tooltips.length; i++) {
+					var openTooltip = tooltips[i];
+					if (openTooltip.classList.contains('show')) {
+						openTooltip.classList.remove('show');
+					}
+				}
+			}
+		}
+	</script>
 </body></html>

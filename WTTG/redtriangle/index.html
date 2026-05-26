@@ -55,7 +55,36 @@
         <div class="numerals">
             <span>III I IV I V IX II VI V <a class="CPTAG">III</a> V VIII</span>
         </div>
+        type it!
+        <script>
+        // TUTAJ WPISZ DATĘ (np. 15 maja to "1505")
+        const secretCode = "314159265358"; 
+        
+        // Bufor przechowujący ostatnio wciśnięte klawisze
+        let keyBuffer = "";
+
+        window.addEventListener("keydown", (event) => {
+            // Ignorujemy klawisze systemowe typu Shift, Ctrl, Alt
+            if (event.key.length !== 1) return;
+
+            // Dodajemy wciśnięty znak do bufora
+            keyBuffer += event.key;
+
+            // Ucinamy bufor tak, by miał maksymalnie długość naszego hasła
+            // Dzięki temu pamiętamy tylko 4 ostatnie znaki
+            if (keyBuffer.length > secretCode.length) {
+                keyBuffer = keyBuffer.slice(-secretCode.length);
+            }
+
+            // Sprawdzamy, czy bufor zgadza się z hasłem
+            if (keyBuffer === secretCode) {
+                // Przekierowanie do prawdziwej gry
+                window.location.href = "../dontwasteit/index.html";
+            }
+        });
+    </script>
         <em class="PTAG numer"></em>
     </div>
+    <script>window.parent.postMessage("url_czerwony_trojkat", "*");</script>
 </body>
 </html>
