@@ -17,16 +17,20 @@
             <div class="icon-name">A.N.N. Browser</div>
         </div>
         <div class="icon my-computer">
-            <img src="computer.png">
-            <div class="icon-name">My Computer</div>
+            <img src="vpn_icon.png">
+            <div class="icon-name">Reset_VPN.exe</div>
         </div>
         <div class="icon note-pad">
             <img src="notepad.png">
             <div class="icon-name">ReadME.txt</div>
         </div>
+        <div class="icon hack-tool" style="display: none;">
+            <img src="computer.png"> <!-- Możesz podmienić na inną ikonę -->
+            <div class="icon-name">analiza_sladow.exe</div>
+        </div>
         <div class="icon recycle-bin">
-            <img src="recycle.png">
-            <div class="icon-name">Recycle Bin</div>
+            <img src="safe-box.png">
+            <div class="icon-name">Sejf.exe</div>
         </div>
     </div>
 
@@ -64,18 +68,169 @@
         <input type="text" id="browser-url" value="http://ann.shadow/main_directory" autocomplete="off" spellcheck="false">        </div>
         <iframe src="Home/index.html" id="ann-iframe"></iframe>
     </div>
+    <div class="window vpn-window" style="display: none; max-width: 400px; height: auto;">
+        <div class="title-bar">
+            <div><img src="computer.png"> Reset_VPN.exe</div>
+            <div class="controls">
+                <button class="cls vpn-cls"></button>
+                <button class="max vpn-max"></button>
+                <button class="min vpn-min"></button>
+            </div>
+        </div>
+        <div class="vpn-content">
+            <div class="vpn-header">
+                <h2>SHADOW VPN PROTECTOR</h2>
+                <p>Pozostałe węzły proxy: <span id="proxy-count" style="color: #00ff00; font-weight: bold; font-size: 18px;">3</span></p>
+            </div>
+            <div class="vpn-body">
+                <div style="position: relative; margin-bottom: 20px; padding: 10px; border: 1px solid #444; background: #111; min-height: 50px;">
+                    
+                    <div id="trace-live" style="visibility: hidden;">
+                        <div class="trace-bar-container" style="margin-bottom: 5px; border: 1px solid #555; background: #222; height: 18px; width: 100%;">
+                            <div id="trace-bar" style="width: 0%; height: 100%; background: #ff0000; transition: width 0.5s linear;"></div>
+                        </div>
+                        <div id="trace-text" style="text-align: right; font-weight: bold; font-size: 14px;">Wykrywanie sygnału...</div>
+                    </div>
 
+                    <div id="trace-cover" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #0a0a0a; display: flex; justify-content: center; align-items: center; z-index: 5; border: 1px dashed #333;">
+                        <span style="color: #444; font-family: monospace; letter-spacing: 2px;">[ STATUS ZASZYFROWANY ]</span>
+                    </div>
+                    
+                    <button id="vpn-scan-btn" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #000; color: #ffaa00; border: 1px solid #ffaa00; padding: 8px 15px; cursor: pointer; font-family: monospace; font-weight: bold; z-index: 10; box-shadow: 0 0 10px rgba(255, 170, 0, 0.2);">[ SKANUJ ŁĄCZE ]</button>
+                </div>
+                <p><strong>Instrukcja:</strong> W przypadku nasilającego się namierzania (czerwona poświata ekranu), użyj resetu, aby spalić węzeł i zatrzeć ślady.</p>
+                <div class="vpn-warning">
+                    ⚠ UWAGA: Posiadasz ograniczoną liczbę bramek proxy. Rozsądnie dysponuj zasobami.
+                </div>
+                
+                <div class="vpn-controls">
+                    <button id="vpn-reset-btn" class="vpn-btn">SPAL WĘZEŁ (RESET)</button>
+
+                    <div id="vpn-captcha-container" style="display: none; background: #111; border: 1px dashed #555; padding: 15px; margin-top: 10px;">
+                        <p style="color: #ffaa00; margin: 0 0 10px 0; font-size: 12px; text-transform: uppercase;">Weryfikacja operatora (Are you human?)</p>
+                        <div id="captcha-text" class="captcha-glitch">X7B9</div>
+                        <input type="text" id="captcha-input" placeholder="Wpisz kod z ekranu..." autocomplete="off" spellcheck="false">
+                        <button id="vpn-verify-btn" class="vpn-btn" style="width: 100%; padding: 8px; font-size: 14px;">WERYFIKUJ_KOD</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="window mystery-window" style="display: none; max-width: 400px; height: auto;">
+    <div class="title-bar">
+        <div><img src="documents.png"> ???.exe</div>
+        <div class="controls">
+            <button class="cls mystery-cls"></button>
+            <button class="max mystery-max"></button>
+            <button class="min mystery-min"></button>
+        </div>
+    </div>
+    <div class="mystery-content">
+        <p style="color: #ff00ff; font-weight: bold;">SYSTEM_ERROR: Access denied.</p>
+        <p>Nie powinnaś tu zaglądać.</p>
+        <div style="background: #000; padding: 10px; font-family: monospace; font-size: 12px; color: #fff;">
+            PS: <span style="color: #00ff00;">"Miłej zabawy ^^"</span>
+        </div>
+        <span style="padding: 10px; font-family: monospace; font-size: 12px; color: #141414cc;">autor: liszKa</span>
+    </div>
+</div>
+
+    <div class="window hack-window" style="display: none; max-width: 600px; height: auto;">
+        <div class="title-bar">
+            <div><img src="computer.png"> System Analizy Śledczej v2.1</div>
+            <div class="controls">
+                <button class="cls hack-cls"></button>
+                <button class="max hack-max"></button>
+                <button class="min hack-min"></button>
+            </div>
+        </div>
+        <div class="hack-content">
+            <div class="hack-header">
+                <h2>SYSTEM IDENTYFIKACJI KRYMINALISTYCZNEJ</h2>
+                <p>Zabezpieczono profil dowodowy na miejscu zdarzenia. Przepisz dokładnie ciąg kodujący (układ minucji/profil DNA), zanim system odrzuci próbkę badawczą. Pomyślna weryfikacja przyzna dostęp do nowego węzła proxy.</p>
+            </div>
+            <div id="hack-game-area">
+                <div id="hack-prompt-container">
+                    <pre id="hack-prompt-text"></pre>
+                </div>
+                <div id="hack-options" style="display: flex; flex-direction: column; gap: 10px; margin-top: 15px; margin-bottom: 15px;"></div>
+                <div id="hack-timer">--:--</div>
+                <div style="text-align: center;">
+                    <button id="hack-start-btn" class="vpn-btn">ROZPOCZNIJ ANALIZĘ DOWODOWĄ</button>
+                </div>
+                <div id="hack-result"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- OKNO SEJFU -->
+    <div class="window safe-window" style="display: none; max-width: 450px; height: auto;">
+        <div class="title-bar">
+            <div><img src="documents.png"> Sejf.exe - Główny Terminal</div>
+            <div class="controls">
+                <button class="cls safe-cls"></button>
+                <button class="max safe-max"></button>
+                <button class="min safe-min"></button>
+            </div>
+        </div>
+        <div class="vpn-content">
+            <div class="vpn-header">
+                <h2 style="color: #00ff00;">PROTOKÓŁ ODBLOKOWANIA</h2>
+                <p>Odszyfruj 4 klucze ukryte w sieci A.N.N. i wprowadź połączony kod poniżej.</p>
+            </div>
+            <div class="vpn-body" style="text-align: center;">
+                <input type="text" id="safe-input" placeholder="XXXX-XXXX-XXXX-XXXX" autocomplete="off" spellcheck="false" style="width: 100%; padding: 10px; background: #111; border: 2px solid #555; color: #fff; font-family: monospace; font-size: 16px; text-align: center; letter-spacing: 2px; margin-bottom: 15px; outline: none;">
+                <button id="safe-submit-btn" class="vpn-btn" style="width: 100%;">AUTORYZUJ DOSTĘP</button>
+                <div id="safe-result" style="margin-top: 15px; font-weight: bold; min-height: 20px;"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="start-menu" class="start-menu" style="display: none;">
+        <div class="start-sidebar">
+            <span class="start-text">A.N.N. OS v2.1</span>
+        </div>
+        <div class="start-items">
+            <div class="start-item" id="start-readme"><img src="notepad.png"> Czytaj_To.txt</div>
+            <div class="start-item" id="start-vpn"><img src="vpn_icon.png"> Moduł VPN</div>
+            <div class="start-item" id="start-safe"><img src="safe-box.png"> Główny Skarbiec</div>
+            <div class="start-separator"></div>
+            <div class="start-item" id="start-restart"><img src="switch.png"> Zakończ sesję (Restart)</div>
+        </div>
+    </div>
+
+    <div id="clock-popup" class="clock-popup" style="display: none;">
+        <div class="clock-date" id="clock-date-text"></div>
+        <div class="clock-status">
+            STATUS SERWERA: <span style="color:#00ff00;">ONLINE</span><br>
+            BEZPIECZEŃSTWO: <span id="security-status" style="color:#00ff00;">BEZPIECZNY</span>
+        </div>
+    </div>
+    
     <div class="taskbar">
         <div class="start-button"><img src="logo.svg"> start</div>
         <div class="opened-tabs">
-            <div class="open-tab" onclick="open()"><img src="documents.png"> Mystery Man</div>
-            <div class="open-tab" onclick="open()"><img src="computer.png"> A.N.N. Browser</div>
-            <div class="open-tab" onclick="open()"><img src="network.png"> My Network</div>
-            <div class="open-tab readme active"><img src="notepad.png"> ReadME.txt</div>
+            <div class="open-tab" onclick="toggleWindow('.mystery-window')"><img src="documents.png"> Mystery Man</div>
+            <div class="open-tab" onclick="toggleWindow('.browser-window')"><img src="computer.png"> A.N.N. Browser</div>
+            <div class="open-tab" onclick="toggleWindow('.vpn-window')"><img src="vpn_icon.png"> Reset_VPN.exe</div>
+            <div class="open-tab" onclick="toggleWindow('.notepad-window')"><img src="notepad.png"> ReadME.txt</div>
+            <div class="open-tab" onclick="toggleWindow('.safe-window')"><img src="safe-box.png"> Sejf.exe</div>
+            <div class="open-tab" onclick="toggleWindow('.hack-window')"><img src="computer.png"> analiza.exe</div>
+        </div>
+        <div class="volume-control">
+            <span title="Głośność">🔊</span>
+            <input type="range" id="volume-slider" min="25" max="100" value="70">
         </div>
         <div class="time">11:20 PM</div>
     </div>
-
+    <div id="ambient-sound"></div>
+    <div id="sys-notification" class="sys-notification" style="display: none;">
+        <div class="sys-notif-icon" id="sys-notif-icon">⚠</div>
+        <div class="sys-notif-content">
+            <div class="sys-notif-title" id="sys-notif-title">SHADOW DEFENDER</div>
+            <div class="sys-notif-desc" id="sys-notif-desc">Niebezpieczeństwo. Trwa namierzanie lokalizacji!</div>
+        </div>
+    </div>
     <script src="desktop.js"></script>
 </body>
 </html>

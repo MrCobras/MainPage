@@ -24,10 +24,19 @@
         <a class="CFTAG clickspot symbol3"></a>
     </div>
     <p class="text-right"><em class="PTAG"></em>
-        6--KOD: 2137---------6--------------------69-o-o-o-o-o-o-o-o-o-o-o||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+        6-- <span id="ukryty-kod-2"></span>---------6--------------------69-o-o-o-o-o-o-o-o-o-o-o||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
     </p>
     <img src="images/code2.png" width="300">
     <br><em class="PTAG"></em>
+    <script>
+    // Pobieramy pierwszy fragment z pamięci
+    const frag2 = sessionStorage.getItem('safeFrag2');
+    
+    // Wklejamy go w miejsce o id "ukryty-kod-1"
+    if(frag2) {
+        document.getElementById('ukryty-kod-2').innerText =" KOD 2/4: " + frag2;
+    }
+</script>
 </body>
 
 </html>

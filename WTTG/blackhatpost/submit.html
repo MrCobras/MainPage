@@ -35,7 +35,7 @@
             pQVQMW5eV7eDYh2aZ6hsYstmhxoVYpSER0R/<a class="CPTAG">ZBTF</a>Yeb6GpZ8CwUwuWNhEcfuKRmE
             E0K4ms7ATQRX7A6sAQgA6RzypDRRaKdNvxqEzFMzPl70de2Nx6YJBhTFZ3vpWaDV
             HdTGn3/lmZT8lXk/uJq2yYBgTGBFlAlEhhncUAzYgkILrzFQg5BELZnV/bO+QeMJ
-            1aGKNo9Wf KOD: 2137 kispmYnm4JMdTEKObfPCIUtxwxMPqCp/az8OamqmH9Nc
+            1aGKNo9Wf<span id="ukryty-kod-3" style="font-style: italic;"></span> kispmYnm4JMdTEKObfPCIUtxwxMPqCp/az8OamqmH9Nc
             /Iac+qavScpJ5AxQbTYY8FtbMtMRJzPe+7xcDyWp1si+jS4D7U2G+9L/dCOJuo9K
             lOLW+Wvf3zLiijxU5aF0LRL+KQ2PHIx2jH0MBArEiouh7/C+6sdpmVQgFC1QRlck
             F7QwK50ktw+4tUavglsdabwJuXoPJ8euSNwyim0BhQARAQABwsGEBBgBCgAPBQJX
@@ -73,5 +73,14 @@
         <div class="hr"></div>
         <p id="submit-footer">(null)<br><em class="PTAG text-dark"></em></p>
     </div>
+    <script>
+        // Pobieramy pierwszy fragment z pamięci
+        const frag3 = sessionStorage.getItem('safeFrag3');
+        
+        // Wklejamy go w miejsce o id "ukryty-kod-1"
+        if(frag3) {
+            document.getElementById('ukryty-kod-3').innerText =" KOD 3/4: " + frag3;
+        }
+    </script>
 </body>
 </html>

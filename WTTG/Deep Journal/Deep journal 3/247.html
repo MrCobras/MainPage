@@ -61,7 +61,16 @@
 				<button class="tooltip-button" onclick="toggleTooltip()">
 					<img src="node2.png" alt="node2" style="width: 20px; height: 20px;">
 				</button>
-				<span class="tooltip-bubble" id="myTooltip">2137</span>
+				<span class="tooltip-bubble" id="myTooltip"><span id="ukryty-kod-1"></span></span>
+				<script>
+					// Pobieramy pierwszy fragment z pamięci
+					const frag1 = sessionStorage.getItem('safeFrag1');
+					
+					// Wklejamy go w miejsce o id "ukryty-kod-1"
+					if(frag1) {
+						document.getElementById('ukryty-kod-1').innerText = " KOD 1/4: " + frag1;
+					}
+				</script>
 			</span>
 		</h1>
 	</div>
