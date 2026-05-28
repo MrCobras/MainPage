@@ -126,7 +126,7 @@ if (urlInput) {
             if (currentUrl.includes("magiczne_mutacje")) iframe.src = "ann_page2.html";
             else if (currentUrl.includes("loogaroo")) iframe.src = "ann_page1.html";
             else if (currentUrl.includes("main_directory") || currentUrl.includes("hub")) iframe.src = "ann_hub.html";
-            else if (currentUrl.includes("youthere")) iframe.src = "youthere/index.html";
+            else if (currentUrl.includes("youthere") || currentUrl.includes("ty_tam")) iframe.src = "youthere/index.html";
             else if (currentUrl.includes("korytarz")) iframe.src = "thehall/index.html";
             else if (currentUrl.includes("doll_maker")) iframe.src = "dollmaker/index.html";
             else if (currentUrl.includes("cel_zlikwidowany")) iframe.src = "tangodown/index.html";
@@ -199,7 +199,7 @@ window.addEventListener("message", function(event) {
         urlInput.value = "http://ann.shadow/magiczne_mutacje";
         if (browserTitleText) browserTitleText.textContent = "A.N.N. - Projekt \"Magiczne Mutacje\"";
     }
-    else if (msg === "url_youthere") urlInput.value = "http://ann.shadow/youthere";
+    else if (msg === "url_youthere") urlInput.value = "http://ann.shadow/ty_tam";
     else if (msg === "url_korytarz") urlInput.value = "http://ann.shadow/korytarz";
     else if (msg === "url_doll_maker") urlInput.value = "http://ann.shadow/doll_maker";
     else if (msg === "url_cel_zlikwidowany") urlInput.value = "http://ann.shadow/cel_zlikwidowany";
