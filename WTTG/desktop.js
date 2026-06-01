@@ -137,7 +137,7 @@ if (urlInput) {
             else if (currentUrl.includes("okaleczanie")) iframe.src = "Mutilation/176.html";
             else if (currentUrl.includes("zaginione_nagrania")) iframe.src = "losttapes/index.html";
             else if (currentUrl.includes("nie_zmarnuj_tego")) iframe.src = "dontwasteit/index.html";
-            else if (currentUrl.includes("gleboki_dziennik")) iframe.src = "deep_journal/245.html";
+            else if (currentUrl.includes("gleboki_dziennik")) iframe.src = "Deep Journal/deep_journal/245.html";
             else if (currentUrl.includes("kodeks_ciszy")) iframe.src = "codexofsilence/index.html";
             else if (currentUrl.includes("posty_czarnej_czapki")) iframe.src = "blackhatpost/index.html";
             else if (currentUrl.includes("home")) iframe.src = "Home/index.html";
