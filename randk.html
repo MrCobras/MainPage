@@ -302,8 +302,26 @@
                 text: "Idealnie. Po kolacji spalimy kalorie na romantycznym spacerze. Gdzie idziemy?",
                 background: "linear-gradient(135deg, #2c3e50, #fd746c)",
                 choices: [
-                    { text: "Po urokliwych uliczkach miasta", target: "plan_finalny" },
-                    { text: "Do spokojnego parku", target: "plan_finalny" }
+                    { text: "Do rozrywkowego miejsca (zabawa)", target: "zabawa" },
+                    { text: "Po uliczkach miasta", target: "miasto_last" },
+                    { text: "Chcę iść na spacer po parku", target: "park_last" },
+                ]
+            },
+            // --- BRAKUJĄCE ZAKOŃCZENIA PO SPACERZE ---
+            miasto_last: {
+                speaker: "Łukasz",
+                text: "Nocne światła miasta to idealne tło na zakończenie naszej trasy. Wszystko ustalone, zmierzamy do celu!",
+                background: "linear-gradient(135deg, #3a3a3a, #1c1c1c)",
+                choices: [
+                    { text: "Przejdź do podsumowania", target: "plan_finalny" }
+                ]
+            },
+            park_last: {
+                speaker: "Łukasz",
+                text: "Cisza, spokój i my. To będzie idealne zakończenie po tak pysznym jedzeniu. Zbieramy się?",
+                background: "linear-gradient(135deg, #1B3A30, #0F2027)",
+                choices: [
+                    { text: "Przejdź do podsumowania", target: "plan_finalny" }
                 ]
             },
 
@@ -323,6 +341,7 @@
                 text: "Doskonały wybór. Po emocjach sportowych czas na chwilę wyciszenia i rozmowę. Gdzie się przejdziemy?",
                 background: "linear-gradient(135deg, #2c3e50, #fd746c)",
                 choices: [
+                    { text: "W strone jedzenia (jedzenie)", target: "jedzenie" },
                     { text: "Nocne zwiedzanie miasta", target: "plan_finalny" },
                     { text: "Spacer alejkami w parku", target: "plan_finalny" }
                 ]
