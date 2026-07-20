@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Interaktywna Randka</title>
+    <style>
+        /* === STYLE MOBILNE DLA VISUAL NOVEL === */
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #1a1a2e;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden; /* Blokuje przewijanie na telefonie */
+            color: #fff;
+        }
+
+        @keyframes gradient-animation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        #game-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end; /* Elementy zjeżdżają na dół */
+            background-image: linear-gradient(135deg, #2b1055, #7597de);
+            background-size: 400% 400%;
+            animation: gradient-animation 18s ease infinite;
+            transition: background-image 0.5s ease-in-out;
+        }
+
+        /* Sekcja tekstu (Dialog) */
+        #dialog-box {
+            background: rgba(0, 0, 0, 0.75);
+            border-top: 2px solid #e94560;
+            padding: 20px;
+            min-height: 120px;
+            box-sizing: border-box;
+            box-shadow: 0 -5px 15px rgba(0,0,0,0.5);
+            z-index: 10;
+        }
+
+        #speaker-name {
+            color: #e94560;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        #dialog-text {
+            font-size: 1.1rem;
+            line-height: 1.5;
+            text-shadow: 1px 1px 2px #000;
+        }
+
+        /* Opcje wyboru */
+        #choices-container {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 85%;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 20;
+        }
+
+        .choice-btn {
+            background: rgba(233, 69, 96, 0.9);
+            color: white;
+            border: 2px solid #fff;
+            border-radius: 25px;
+            padding: 15px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+            cursor: pointer;
+            transition: transform 0.1s, background 0.2s;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .choice-btn:active {
+            transform: scale(0.95);
+            background: rgba(255, 255, 255, 0.9);
+            color: #e94560;
+        }
+
+        /* Estetyczne postacie/zdjęcia w tle (Opcjonalnie) */
+        #character-sprite {
+            position: absolute;
+            bottom: 160px; /* Tuż nad polem dialogowym */
+            left: 50%;
+            transform: translateX(-50%);
+            max-height: 50vh;
+            display: none; /* Domyślnie wyłączone, można dodać zdjęcia */
+        }
+    </style>
+</head>
+<body>
+
+    <div id="game-container">
+        <!-- Opcjonalnie miejsce na grafikę -->
+        <img id="character-sprite" src="" alt="">
+
+        <!-- Przyciski wyborów (wyskakują na środku) -->
+        <div id="choices-container"></div>
+
+        <!-- Pole dialogowe na dole -->
+        <div id="dialog-box">
+            <div id="speaker-name">Twój Przewodnik</div>
+            <div id="dialog-text">Trwa ładowanie misji...</div>
+        </div>
+    </div>
+
+    <script>
+        // === LOGIKA GRY (STATE MACHINE) ===
+
+        // Obiekt przechowujący wszystkie sceny w grze
+        const story = {
+            start: {
+                speaker: "Łukasz",
+                text: "Gotowa na nową przygodę? Kryptonim misji: Pokuta. Mam kilka propozycji, ale to Ty jesteś osobą decydującą o przebiegu tej operacji. Od czego zaczynamy?",
+                background: "linear-gradient(135deg, #2b1055, #7597de)", // Gwieździsta noc
+                choices: [
+                    { text: "Padam z głodu! Ciekawe co znalazłeś do jedzenia?", target: "jedzenie" },
+                    { text: "Najpierw dobra zabawa!", target: "zabawa" },
+                    { text: "Chcę iść na spacer, by porozmawiać i się przytulić! (spacer)", target: "spacer" },
+                ]
+            },
+
+            // ŚCIEŻKA: Jedzenie
+            jedzenie: {
+                speaker: "Łukasz",
+                text: "Wspaniale! Czas na kulinarne doznania. Co wybierasz na początek naszej randki?",
+                background: "linear-gradient(135deg, #800020, #d4af37)", // Wino i złoto
+                choices: [
+                    { text: "Mam ochotę na coś eleganckiego (Włoska)", target: "wloska" },
+                    { text: "Może odrobina orientu? (Sushi)", target: "sushi" },
+                    { text: "Dobry kuczak nie jest zły (jedzenie)", target: "kurczak" },
+                    { text: "Jednak zmieniam zdanie, chcę się rozerwać (zabawa)", target: "zabawa" },
+                    { text: "Jednak zmieniam zdanie, chcę iść na spacer (spacer)", target: "spacer" }
+                ]
+            },
+            // ŚCIEŻKA: Kurczak
+            kurczak: {  
+                speaker: "Łukasz",
+                text: "Kurczak to zawsze dobry wybór! Czas na pyszne jedzenie. Co robimy po posiłku?",
+                background: "linear-gradient(135deg, #ff7e5f, #feb47b)", // Ciepły zachód słońca
+                choices: [
+                    { text: "Chcę iść na spacer", target: "spacer_po_jedzeniu" },
+                    { text: "Czas na zabawę!", target: "zabawa_po_jedzeniu" }
+                ]
+            },
+            // ŚCIEŻKA: Włoska Restauracja
+            wloska: {
+                speaker: "Łukasz",
+                text: "Kierunek obrany: najlepsza pasta w okolicy. Klimatyczny wieczór czas zacząć. Co robimy po kolacji, by spalić te pyszne kalorie?",
+                background: "linear-gradient(135deg, #800020, #d4af37)", // Wino i złoto
+                choices: [
+                    { text: "Spokojny spacer po urokliwych uliczkach", target: "spacer_po_jedzeniu" },
+                    { text: "Chcę Ci skopać tyłek w jakiejś grze", target: "zabawa_po_jedzeniu" }
+                ]
+            },
+            // ŚCIEŻKA: Sushi
+            sushi: {
+                speaker: "Łukasz",
+                text: "Świetny wybór! Świeże rolki, pałeczki w dłoń i pyszne jedzenie. Jakie plany na drugą część naszej ekspedycji?",
+                background: "linear-gradient(135deg, #112d4e, #f9f7f7)", // Głębia oceanu
+                choices: [
+                    { text: "Zgłębiamy tajemnice miasta nocą (Spacer)", target: "spacer_po_jedzeniu" },
+                    { text: "Chcę Ci skopać tyłek w jakiejś grze", target: "zabawa_po_jedzeniu" }
+                ]
+            },
+            // ŚCIEŻKA: Zabawa
+            zabawa: {
+                speaker: "Łukasz",
+                text: "Lubię to nastawienie! Czas na trochę adrenaliny i rywalizacji. Co wybierasz?",
+                background: "linear-gradient(135deg, #0f2027, #203a43)", // Mroczny pub
+                choices: [
+                    { text: "Minigolf - dla precyzji i cierpliwości", target: "golf" },
+                    { text: "Rzutki - sprawdźmy, kto ma celniejsze oko", target: "rzutki" },
+                    { text: "Bilard - strategia i opanowanie", target: "bilard" },
+                    { text: "Sky Pixel - dla fanów retro", target: "sky" },
+                    { text: "Shuffleboard - precyzja i spokój", target: "shuffleboard" },
+                    { text: "Jednak zmieniam zdanie, chcę iść na spacer (spacer)", target: "spacer" },
+                    { text: "Jednak zmieniam zdanie, nie będzie sprawiedliwie grać na głodnego Łukaszka (jedzenie)", target: "jedzenie" }
+                ]
+            },
+            // Ścieżka: Golf
+            golf: {
+                speaker: "Łukasz",
+                text: "Czas na sportową rywalizację! Kto pierwszy trafi do dołka, ten wygrywa. Gotowa na wyzwanie?",
+                background: "linear-gradient(135deg, #0f2027, #203a43)", // Mroczny pub
+                choices: [
+                    { text: "Po grze idziemy na spacer!", target: "spacer_po_zabawie" },
+                    { text: "Po grze idziemy coś zjeść!", target: "jedzenie_po_zabawie" }
+                ]
+            },
+            // Ścieżka: rzutki
+            rzutki: {
+                speaker: "Łukasz",
+                text: "Czas na precyzyjną rywalizację! Kto pierwszy trafi w środek tarczy, ten wygrywa. Gotowa na wyzwanie?",
+                background: "linear-gradient(135deg, #0f2027, #203a43)", // Mroczny pub
+                choices: [
+                    { text: "Po grze idziemy na spacer!", target: "spacer_po_zabawie" },
+                    { text: "Po grze idziemy coś zjeść!", target: "jedzenie_po_zabawie" }
+                ]
+            },
+            // Ścieżka: bilard
+            bilard: {
+                speaker: "Łukasz",
+                text: "Czas na strategiczną rywalizację! Kto pierwszy wbije wszystkie swoje bile, ten wygrywa. Gotowa na wyzwanie?",
+                background: "linear-gradient(135deg, #0f2027, #203a43)", // Mroczny pub
+                choices: [
+                    { text: "Po grze idziemy na spacer!", target: "spacer_po_zabawie" },
+                    { text: "Po grze idziemy coś zjeść!", target: "jedzenie_po_zabawie" }
+                ]
+            },
+            // Ścieżka: Sky Pixel
+            sky: {
+                speaker: "Łukasz",
+                text: "Czas na zręcznościową rywalizację! Kto pierwszy zdobędzie najwyższy wynik, ten wygrywa. Gotowa na wyzwanie?",
+                background: "linear-gradient(135deg, #0f2027, #203a43)", // Mroczny pub
+                choices: [
+                    { text: "Po grze idziemy na spacer!", target: "spacer_po_zabawie" },
+                    { text: "Po grze idziemy coś zjeść!", target: "jedzenie_po_zabawie" }
+                ]
+            },
+            // Ścieżka: Shuffleboard
+            shuffleboard: {
+                speaker: "Łukasz",
+                text: "Czas na precyzyjną rywalizację! Kto pierwszy zdobędzie najwięcej punktów, ten wygrywa. Gotowa na wyzwanie?",
+                background: "linear-gradient(135deg, #0f2027, #203a43)", // Mroczny pub
+                choices: [
+                    { text: "Po grze idziemy na spacer!", target: "spacer_po_zabawie" },
+                    { text: "Po grze idziemy coś zjeść!", target: "jedzenie_po_zabawie" }
+                ]
+            },
+            // ŚCIEŻKA: spacer
+            spacer: {
+                speaker: "Łukasz",
+                text: "Cudownie! Czas na romantyczny spacer. Gdzie chciałabyś się udać?",
+                background: "linear-gradient(135deg, #2c3e50, #fd746c)", // Nocne niebo
+                choices: [
+                    { text: "W strone jedzenia (jedzenie)", target: "jedzenie" },
+                    { text: "Do rozrywkowego miejsca (zabawa)", target: "zabawa" },
+                    { text: "Po uliczkach miasta", target: "miasto" },
+                    { text: "Chcę iść na spacer po parku", target: "park" },
+                    { text: "Jednak zmieniam zdanie, chcę się rozerwać (zabawa)", target: "zabawa" },
+                    { text: "Jednak zmieniam zdanie, chcę zjeść coś pysznego (jedzenie)", target: "jedzenie" }
+                ]
+            },
+            
+            // Ścieżka: Spacer po mieście
+            miasto: {
+                speaker: "Łukasz",
+                text: "Spacer po mieście brzmi świetnie. Nocne światła, gwar ulic... co robimy dalej?",
+                background: "linear-gradient(135deg, #3a3a3a, #1c1c1c)", // Neony miasta
+                choices: [
+                    { text: "Zgłodniałam, poszukajmy czegoś do jedzenia.", target: "jedzenie_po_spacerze" },
+                    { text: "Mam jeszcze energię na rywalizację!", target: "zabawa_po_spacerze" }
+                ]
+            },
+
+            // Ścieżka: Spacer po parku
+            park: {
+                speaker: "Łukasz",
+                text: "Park to idealne miejsce na spokojną rozmowę. Świeże powietrze, cisza... co powiesz na kolejny punkt programu?",
+                background: "linear-gradient(135deg, #1B3A30, #0F2027)", // Ciemny las
+                choices: [
+                    { text: "Chodźmy coś zjeść, spacer zaostrzył apetyt.", target: "jedzenie_po_spacerze" },
+                    { text: "A może teraz trochę zabawy?", target: "zabawa_po_spacerze" }
+                ]
+            },
+
+            // KONTYNUACJE (po pierwszym wyborze)
+            
+            // --- Po JEDZENIU ---
+            zabawa_po_jedzeniu: {
+                speaker: "Łukasz",
+                text: "Świetny pomysł! Po jedzeniu trochę rywalizacji dobrze nam zrobi. W co gramy?",
+                background: "linear-gradient(135deg, #0f2027, #203a43)",
+                choices: [
+                    { text: "Minigolf", target: "plan_finalny" },
+                    { text: "Rzutki", target: "plan_finalny" },
+                    { text: "Bilard", target: "plan_finalny" }
+                ]
+            },
+            spacer_po_jedzeniu: {
+                speaker: "Łukasz",
+                text: "Idealnie. Po kolacji spalimy kalorie na romantycznym spacerze. Gdzie idziemy?",
+                background: "linear-gradient(135deg, #2c3e50, #fd746c)",
+                choices: [
+                    { text: "Po urokliwych uliczkach miasta", target: "plan_finalny" },
+                    { text: "Do spokojnego parku", target: "plan_finalny" }
+                ]
+            },
+
+            // --- Po ZABAWIE ---
+            jedzenie_po_zabawie: {
+                speaker: "Łukasz",
+                text: "Zasłużyliśmy na nagrodę! Po takiej grze apetyt na pewno dopisuje. Co jemy?",
+                background: "linear-gradient(135deg, #800020, #d4af37)",
+                choices: [
+                    { text: "Elegancka włoska kolacja", target: "plan_finalny" },
+                    { text: "Coś z orientalnym smakiem (Sushi)", target: "plan_finalny" },
+                    { text: "Klasyka, czyli pyszny kurczak", target: "plan_finalny" }
+                ]
+            },
+            spacer_po_zabawie: {
+                speaker: "Łukasz",
+                text: "Doskonały wybór. Po emocjach sportowych czas na chwilę wyciszenia i rozmowę. Gdzie się przejdziemy?",
+                background: "linear-gradient(135deg, #2c3e50, #fd746c)",
+                choices: [
+                    { text: "Nocne zwiedzanie miasta", target: "plan_finalny" },
+                    { text: "Spacer alejkami w parku", target: "plan_finalny" }
+                ]
+            },
+
+            // --- Po SPACERZE ---
+            jedzenie_po_spacerze: {
+                speaker: "Łukasz",
+                text: "Świetny pomysł! Po spacerze jedzenie będzie smakować jeszcze lepiej. Na co masz ochotę?",
+                background: "linear-gradient(135deg, #800020, #d4af37)",
+                choices: [
+                    { text: "Elegancka włoska kolacja", target: "plan_finalny" },
+                    { text: "Coś z orientalnym smakiem (Sushi)", target: "plan_finalny" },
+                    { text: "Klasyka, czyli pyszny kurczak", target: "plan_finalny" }
+                ]
+            },
+            zabawa_po_spacerze: {
+                speaker: "Łukasz",
+                text: "Super! Po chwili relaksu czas na trochę adrenaliny. Co wybierasz?",
+                background: "linear-gradient(135deg, #0f2027, #203a43)",
+                choices: [
+                    { text: "Minigolf", target: "plan_finalny" },
+                    { text: "Rzutki", target: "plan_finalny" },
+                    { text: "Bilard", target: "plan_finalny" }
+                ]
+            },
+
+            // --- WĘZEŁ FINAŁOWY ---
+            plan_finalny: {
+                speaker: "Łukasz",
+                text: "Plan idealny! Wszystko ustalone. To będzie niezapomniany wieczór. Gotowa, by zacząć naszą przygodę?",
+                background: "linear-gradient(135deg, #e94560, #7597de)", // Finałowa ekscytacja
+                choices: [
+                    { text: "❤️ Zaplanowane. Idziemy! (Restart)", target: "start" }
+                ]
+            }
+        };
+
+        // Zmienne DOM
+        const gameContainer = document.getElementById("game-container");
+        const speakerName = document.getElementById("speaker-name");
+        const dialogText = document.getElementById("dialog-text");
+        const choicesContainer = document.getElementById("choices-container");
+
+        // Silnik zmiany scen
+        function loadScene(sceneKey) {
+            const scene = story[sceneKey];
+
+            // 1. Zmiana tła (aby oddać klimat opcji)
+            if (scene.background) {
+                gameContainer.style.backgroundImage = scene.background;
+            }
+
+            // 2. Aktualizacja dialogów
+            speakerName.innerText = scene.speaker;
+            
+            // Efekt pisania na maszynie
+            dialogText.innerText = "";
+            let i = 0;
+            let speed = 25; // Szybkość "pisania" tekstu
+            
+            function typeWriter() {
+                if (i < scene.text.length) {
+                    dialogText.innerHTML += scene.text.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, speed);
+                } else {
+                    // 3. Po wypisaniu tekstu, pokaż opcje wyboru
+                    renderChoices(scene.choices);
+                }
+            }
+            
+            choicesContainer.innerHTML = ""; // Czyści poprzednie wybory
+            typeWriter();
+        }
+
+        // Renderowanie przycisków
+        function renderChoices(choices) {
+            choicesContainer.innerHTML = ""; // Upewniamy się, że jest pusto
+            
+            if (choices.length === 0) {
+                // Jeśli brak opcji, tworzymy przycisk resetu
+                const btn = document.createElement("div");
+                btn.className = "choice-btn";
+                btn.innerText = "❤️ Zaplanowane. Idziemy! (Restart)";
+                btn.onclick = () => {
+                    // Wibracja po kliknięciu
+                    if (window.navigator && window.navigator.vibrate) {
+                        navigator.vibrate(50);
+                    }
+                    loadScene('start');
+                };
+                choicesContainer.appendChild(btn);
+                return;
+            }
+
+            choices.forEach(choice => {
+                const btn = document.createElement("div");
+                btn.className = "choice-btn";
+                btn.innerText = choice.text;
+                // Podpinamy nową scenę pod przycisk
+                btn.onclick = () => {
+                    // Wibracja po kliknięciu
+                    if (window.navigator && window.navigator.vibrate) {
+                        navigator.vibrate(50);
+                    }
+                    choicesContainer.innerHTML = ""; // Ukryj opcje natychmiast po kliknięciu
+                    loadScene(choice.target);
+                };
+                choicesContainer.appendChild(btn);
+            });
+        }
+
+        // --- START GRY ---
+        // Opóźnienie na start, by wszystko się załadowało
+        setTimeout(() => {
+            loadScene('start');
+        }, 500);
+
+    </script>
+</body>
+</html>
